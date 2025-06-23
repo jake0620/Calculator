@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수익 계산기</title>
+</head>
+<body>
+
+<h1>수익 계산기</h1>
+<form id="profitForm">
+    <label for="purchasePrice">매수 금액 (달러): </label>
+    <input type="number" id="purchasePrice" value="2800"><br><br>
+    
+    <label for="numberOfPolygons">전체 폴리곤 수: </label>
+    <input type="number" id="numberOfPolygons" value="14770"><br><br>
+    
+    <label for="sellQuantity">판매한 폴리곤 수: </label>
+    <input type="number" id="sellQuantity" value="1500"><br><br>
+    
+    <button type="button" onclick="calculateProfit()">수익 계산</button>
+</form>
+
+<h2>총 수익: <span id="totalProfit">0</span> 원</h2>
+
+<script>
+function calculateProfit() {
+    let purchasePrice = parseFloat(document.getElementById("purchasePrice").value);
+    let numberOfPolygons = parseInt(document.getElementById("numberOfPolygons").value);
+    let sellQuantity = parseInt(document.getElementById("sellQuantity").value);
+    
+    // 1개 폴리곤 가격 계산
+    let unitPrice = purchasePrice / numberOfPolygons;
+    
+    // 1개 폴리곤에서 얻은 수익 (원화로 환산)
+    let unitProfit = (unitPrice * 1300) - (0.19 * 1300);  // 0.19달러에 대한 원화 환산
+    
+    // 총 수익 계산
+    let totalProfit = unitProfit * sellQuantity;
+    
+    // 결과 출력
+    document.getElementById("totalProfit").textContent = totalProfit.toFixed(2);
+}
+</script>
+
+</body>
+</html>
